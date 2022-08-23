@@ -14,3 +14,6 @@ API de lista de produtos usando operações CRUD, na API REST se consegue {
     UPDATE (PUT or PATCH) - Atualiza item e preço a partir de ID,
     DELETE: (DELETE) - Para deletar um produto da lista,
 }
+
+Após baixar as bibliotecas com npm install, basta executar o comando 'npm start' para iniciar o nodemon
+nodemon funcionando é possivel o uso de ferramentas REST 
