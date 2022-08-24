@@ -8,14 +8,14 @@ const produtos = [
     {
         id:1,
         item:"Edredon",
-        preço:16990/100, 
+        preço:'R$' + 16990/100, 
     
     },
 
     {
         id:2,
         item:"Jogo de panela",
-        preço:22990/100, 
+        preço:'R$' + 22990/100, 
     }
 ]
 
