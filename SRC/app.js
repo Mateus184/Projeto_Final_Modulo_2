@@ -14,23 +14,23 @@ app.get('/',(req,res) => {
 
     res.status(200).send('Selecione a uma rota valida');
 })
-app.get('/produtos', async (req,res)=>{
+app.get('/produtos', async (req,res)=>{                       // Rota que recebe as Informações do BD
 
-    try {
+    try {                                                       //Retorna os produtos se a busca ocorrer perfeitamente
         const allProducts = await Products.find()
         res.status(200).json(allProducts)
-    } catch (error) {
+    } catch (error) {                                           // retorna Erro 
         res.status(500).json({error:error})
     }
     
 })
-app.get ('/produtos/:id', async (req,res) =>{
+app.get ('/produtos/:id', async (req,res) =>{                // Rota que busca as Informações de um unico produto no BD
     const id = req.params.id    
 
     try {
         const produtoOne = await Products.findOne({_id: id})
 
-        if(!produtoOne){
+        if(!produtoOne){                                                  
         res.status(422).json({message:'O Produto não foi encontrado'})      
         return
         }
@@ -40,10 +40,10 @@ app.get ('/produtos/:id', async (req,res) =>{
     }   
 
 })
-app.post('/newProduct', async (req,res) =>{
+app.post('/newProduct', async (req,res) =>{                          // Rota que cria novos produtos no BD
    const {nomeProduto,valorProduto,descricaoProduto} = req.body
     if(!nomeProduto){
-        res.status(422).json({error:"o nome do"})
+        res.status(422).json({error:'O Produto não foi encontrado'})
         return
     }
    const product = {
@@ -62,7 +62,7 @@ app.post('/newProduct', async (req,res) =>{
     
 })
 
-app.patch ('/edit/:id', async (req,res) =>{
+app.patch ('/edit/:id', async (req,res) =>{                            // Rota edita o produto, buscando pelo ID. Pode editar apenas 1 informação do produto
     const id = req.params.id 
     const {nomeProduto,valorProduto,descricaoProduto} = req.body
     const product = {
@@ -84,7 +84,7 @@ app.patch ('/edit/:id', async (req,res) =>{
 
 })
 
-app.delete ('/delete/:id', async (req,res) =>{
+app.delete ('/delete/:id', async (req,res) =>{                         // ROta apaga o produto buscando pelo Id
     const id = req.params.id 
     const product = await Products.findOne({_id:id})
     if(!product){
