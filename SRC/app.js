@@ -10,11 +10,22 @@ app.use(
 )
 app.use(express.json());
 
-const Products = mongoose.model('Product',{
-    nomeProduto: String,
-    valorProduto: Number,
-    descricaoProduto:String
-})
+
+const produtos = [
+    {
+        id:1,
+        item:"Edredon",
+        preço:16990/100, 
+    
+    },
+
+    {
+        id:2,
+        item:"Jogo de panela",
+        preço:22990/100, 
+    }
+]
+
 app.get('/',(req,res) => {
 
     res.status(200).send('Selecione a uma rota valida');
