@@ -2,6 +2,8 @@ import express from "express";
 import mongoose from "mongoose";
 
 
+
+
 const app = express();
 app.use(
     express.urlencoded({
@@ -10,11 +12,16 @@ app.use(
 )
 app.use(express.json());
 
+const Products = mongoose.model('Product',{
+    nomeProduto: String,
+    valorProduto: Number,
+    descricaoProduto:String
+})
 app.get('/',(req,res) => {
 
     res.status(200).send('Selecione a uma rota valida');
 })
-app.get('/produtos', async (req,res)=>{                       // Rota que recebe as Informações do BD
+app.get('/produtos', async (req,res)=>{                             // Rota que recebe as Informações do BD
 
     try {                                                       //Retorna os produtos se a busca ocorrer perfeitamente
         const allProducts = await Products.find()
@@ -24,7 +31,7 @@ app.get('/produtos', async (req,res)=>{                       // Rota que recebe
     }
     
 })
-app.get ('/produtos/:id', async (req,res) =>{                // Rota que busca as Informações de um unico produto no BD
+app.get ('/produtos/:id', async (req,res) =>{                       // Rota que busca as Informações de um unico produto no BD
     const id = req.params.id    
 
     try {
