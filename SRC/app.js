@@ -17,7 +17,10 @@ const Products = mongoose.model('Product',{
     valorProduto: Number,
     descricaoProduto:String
 })
+app.get('/',(req,res) => {
 
+    res.status(200).send('Selecione a uma rota valida');
+})
 
 
 app.post('/newProduct', async (req,res) =>{                          // Rota que cria novos produtos no BD
