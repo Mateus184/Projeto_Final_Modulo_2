@@ -21,7 +21,16 @@ app.get('/',(req,res) => {
 
     res.status(200).send('Selecione a uma rota valida');
 })
+app.get('/produtos', async (req,res)=>{                             // Rota que recebe as Informações do BD
 
+    try {                                                       //Retorna os produtos se a busca ocorrer perfeitamente
+        const allProducts = await Products.find()
+        res.status(200).json(allProducts)
+    } catch (error) {                                           // retorna Erro 
+        res.status(500).json({error:error})
+    }
+
+})
 
 app.post('/newProduct', async (req,res) =>{                          // Rota que cria novos produtos no BD
    const {nomeProduto,valorProduto,descricaoProduto} = req.body
