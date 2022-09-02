@@ -17,36 +17,9 @@ const Products = mongoose.model('Product',{
     valorProduto: Number,
     descricaoProduto:String
 })
-app.get('/',(req,res) => {
 
-    res.status(200).send('Selecione a uma rota valida');
-})
-app.get('/produtos', async (req,res)=>{                             // Rota que recebe as Informações do BD
 
-    try {                                                       //Retorna os produtos se a busca ocorrer perfeitamente
-        const allProducts = await Products.find()
-        res.status(200).json(allProducts)
-    } catch (error) {                                           // retorna Erro 
-        res.status(500).json({error:error})
-    }
-    
-})
-app.get ('/produtos/:id', async (req,res) =>{                       // Rota que busca as Informações de um unico produto no BD
-    const id = req.params.id    
 
-    try {
-        const produtoOne = await Products.findOne({_id: id})
-
-        if(!produtoOne){                                                  
-        res.status(422).json({message:'O Produto não foi encontrado'})      
-        return
-        }
-        res.status(200).json(produtoOne)
-    } catch (error) {
-        res.status(500).json({error:error})
-    }   
-
-})
 app.post('/newProduct', async (req,res) =>{                          // Rota que cria novos produtos no BD
    const {nomeProduto,valorProduto,descricaoProduto} = req.body
     if(!nomeProduto){
